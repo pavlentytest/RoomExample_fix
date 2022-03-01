@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview_tasks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        getTasks();
         buttonAddTask = findViewById(R.id.floating_button_add);
         buttonAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(List<Task> tasks) {
                 super.onPostExecute(tasks);
                 TaskAdapter adapter = new TaskAdapter(MainActivity.this, tasks);
-
+                recyclerView.setAdapter(adapter);
             }
         }
         GetTasks gt = new GetTasks();
